@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our date ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+    emailjs.init({
+        publicKey: "_XRtO3BbQIjxA2OOD"
+    });
+</script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+background:
+linear-gradient(
+135deg,
+#0f172a,
+#1e293b,
+#111827);
+}
+
+/* CARD */
+.container{
+background:rgba(255,255,255,.08);
+width:90%;
+max-width:500px;
+padding:30px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+position:relative;
+z-index:2;
+}
+
+.hidden{
+display:none;
+}
+
+h1{
+
+font-family:'Playfair Display',serif;
+font-size:42px;
+color:white;
+margin-bottom:15px;
+
+}
+
+p{
+color:#f1f5f9;
+font-size:18px;
+line-height:1.8;
+margin-top:20px;
+
+}
+
+/* GIF */
+
+#gif{
+
+width:270px;
+border-radius:20px;
+margin:30px 0;
+box-shadow:
+0 20px 50px rgba(0,0,0,.4);
+transition:.120s;
+}
+#gif:hover{
+transform:scale(1.05);
+}
+
+/* BOTONES */
+
+.buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+margin-top:35px;
+position:relative;
+height:60px;
+}
+
+button{
+border:none;
+cursor:pointer;
+padding:12px 25px;
+font-size:18px;
+border-radius:15px;
+font-weight:600;
+}
+
+#si{
+background:linear-gradient(
+135deg,
+#ff4d6d,
+#ff758f);
+color:white;
+box-shadow:
+0 10px 30px rgba(255,77,109,.4);
+}
+
+#no{
+background:white;
+color:#111827;
+position:relative;
+z-index:9999;
+}
+input,select{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:10px;
+border:1px solid #ccc;
+}
+.confirmar{
+background:#ff4d6d;
+color:white;
+width:100%;
+}
+/* Corazones */
+
+.heart{
+position:absolute;
+font-size:24px;
+animation:float 8s linear infinite;
+user-select:none;
+opacity:.7;
+}
+#gifFinal{
+width:260px;
+border-radius:20px;
+margin:25px 0;
+box-shadow:0 20px 50px rgba(0,0,0,.35);
+transition:.2s;
+}
+
+#gifFinal:hover{
+transform:scale(1.05);
+}
+
+@keyframes float{
+from{
+transform:translateY(100vh);
+}
+to{
+transform:translateY(-100px);
+}
+}
+</style>
+</head>
+<body>
+
+
+<div id="inicio" class="container">
+<h1>Tengo una invitación para ti 💛</h1>
+<img id="gif" src="image1.png" >
+<p>
+Quiero invitarte a celebrar nuestros
+<b>7 meses juntos.</b>
+<br><br>
+¿Aceptarías una cita a distancia?
+</p>
+
+<button id="si">💛 Sí</button>
+<button id="no">🤍 No</button>
+</div>
+<div id="cita" class="container hidden">
+
+<h1> Lo sabia! Me deseas😏 </h1>
+<p>Elige una fecha y una comida:</p>
+
+<select id="fecha">
+    <option value="">Elige una fecha</option>
+    <option>Viernes 17 - 18:00 (Hora Bolivia) </option>
+    <option>Sabado 18 - 18:00 (Hora Bolivia) </option>
+    <option>Sabado 18 - 13:00 (Hora Bolivia) </option>
+    </select>
+
+<select id="Comida">
+<option value="">Elige una comida</option>
+<option>Sushi 🍣</option>
+<option>Pollo 🍗</option>
+<option>Lo que tú quieras 💛</option>
+</select>
+
+<button class="confirmar" onclick="confirmar()">
+Confirmar cita 💛
+</button>
+</div>
+<div id="final" class="container hidden">
+
+<h1>¡Cita Confirmada! 💛</h1>
+<img id="gifFinal" src="homero.gif">
+<p id="resultado"></p>
+
+<h3> Te amo mi lefcita </h3>
+<h3> DressCode: Formal </h3>
+</div>
+<script>
+
+const botonNo=document.getElementById("no");
+
+function moverBoton(){
+
+const x=Math.random()*(window.innerWidth-120);
+const y=Math.random()*(window.innerHeight-80);
+
+botonNo.style.position="fixed";
+botonNo.style.left=x+"px";
+botonNo.style.top=y+"px";
+}
+
+botonNo.addEventListener("mouseover",moverBoton);
+
+botonNo.addEventListener("touchstart", function(e){
+e.preventDefault();
+moverBoton();
+});
+
+document.getElementById("si").addEventListener("click", ()=>{
+document.getElementById("inicio").classList.add("hidden");
+document.getElementById("cita").classList.remove("hidden");
+});
+
+function confirmar(){
+
+const fecha=document.getElementById("fecha").value;
+const Comida=document.getElementById("Comida").value;
+
+if(!fecha || !Comida){
+alert("Debes seleccionar una fecha y una comida 💛");
+return;
+}
+emailjs.send(
+"service_x38daz3",
+"template_85o02c6",
+{
+fecha: fecha,
+comida: Comida
+}
+)
+.then(function(){
+
+document.getElementById("cita").classList.add("hidden");
+document.getElementById("final").classList.remove("hidden");
+
+document.getElementById("resultado").innerHTML=
+`Nuestra cita será el <b>${fecha}</b><br><br>
+Comida elegido: <b>${Comida}</b>`;
+})
+.catch(function(error){
+
+alert("Hubo un problema al enviar la confirmación.");
+console.error(error);
+});
+}
+
+function crearCorazon(){
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="💛";
+heart.style.left=Math.random()*window.innerWidth+"px";
+heart.style.fontSize=(20+Math.random()*25)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),8000);
+}
+setInterval(crearCorazon,500);
+</script>
+</body>
+</html>
